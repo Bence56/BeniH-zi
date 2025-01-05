@@ -1,3 +1,3 @@
 ultralytics
 numpy
-cv2
+opencv-python

@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 from ultralytics import YOLO
-import json
+import os
 from calories_db import CalorieDatabaseAndInteractor
 
 
@@ -117,8 +117,8 @@ class CalorieEstimator:
         total_label = f"Total Calories: {results['total_calories']:.2f}"
         cv2.putText(image, total_label, (10, 30), 
                     cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-
-        cv2.imwrite(f"{self.img_output_dir_path}result_with_calories.jpg", image)
+        filename = os.path.splitext(os.path.basename(image_path))[0]
+        cv2.imwrite(f"{self.img_output_dir_path}res_{filename}.jpg", image)
         return image
 
     def pipeline(self,img_path:str,visualize:bool=True):    
